@@ -15,7 +15,61 @@ Java Program:
 parseStringToInteger(): This method parses a string into an Integer. It catches any NumberFormatException if the string is not a valid number.
 calculateSum(): This method calculates the sum of a list of integers. Java automatically performs unboxing when adding Integer values to sum (an int).
 
+//code
+import java.util.ArrayList;
+import java.util.List;
 
+public class SumCalculator {
+
+    public static Integer parseStringToInteger(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number format: " + str);
+            return null;
+        }
+    }
+
+    public static int calculateSum(List<Integer> numbers) {
+        int sum = 0;
+        for (Integer number : numbers) {
+            if (number != null) {
+                sum += number;
+            }
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> numbers = new ArrayList<>();
+
+        String[] inputs = {"10", "20", "30", "40", "50"};
+
+        for (String input : inputs) {
+            Integer parsedNumber = parseStringToInteger(input);
+            if (parsedNumber != null) {
+                numbers.add(parsedNumber);
+            }
+        }
+
+        int sum = calculateSum(numbers);
+        System.out.println("The sum of the list is: " + sum);
+
+        System.out.println("Test Case 3:");
+        List<Integer> numbersWithInvalid = new ArrayList<>();
+        String[] testCase3Inputs = {"50", "invalid", "70"};
+
+        for (String input : testCase3Inputs) {
+            Integer parsedNumber = parseStringToInteger(input);
+            if (parsedNumber != null) {
+                numbersWithInvalid.add(parsedNumber);
+            }
+        }
+
+        int sumWithInvalid = calculateSum(numbersWithInvalid);
+        System.out.println("The sum of the list is: " + sumWithInvalid);
+    }
+}
 
 
 Test Cases:
